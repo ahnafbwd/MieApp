@@ -101,8 +101,6 @@ public class CustomFragment extends Fragment {
                } catch (ParseException e) {
                    e.printStackTrace();
                }
-
-
            }
        });
         recyclerView.setAdapter(adapter);
@@ -402,6 +400,5 @@ public class CustomFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 
 }

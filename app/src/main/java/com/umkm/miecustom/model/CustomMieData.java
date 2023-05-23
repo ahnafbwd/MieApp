@@ -46,6 +46,7 @@ public class CustomMieData {
     public void setShortdesc(String shortdesc) {
         this.shortdesc = shortdesc;
     }
+
     public String getPrice() {
         return price;
     }

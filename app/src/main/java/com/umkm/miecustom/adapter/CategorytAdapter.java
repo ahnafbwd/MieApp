@@ -22,13 +22,12 @@ public class CategorytAdapter extends RecyclerView.Adapter<CategorytAdapter.MyVi
     private ItemClickListener clickListener;
     Context context;
 
-    // Buat view holder
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public RadioButton rb;
 
         public MyViewHolder(View view) {
             super(view);
-            rb = (RadioButton) view.findViewById(R.id.rdCate);
+            rb = view.findViewById(R.id.rdCate);
             rb.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -41,14 +40,12 @@ public class CategorytAdapter extends RecyclerView.Adapter<CategorytAdapter.MyVi
         }
     }
 
-    // Konstruktor
     public CategorytAdapter(Context context, List<String> list, ItemClickListener clickListener) {
         this.context = context;
         this.list = list;
         this.clickListener = clickListener;
     }
 
-    // Buat tampilan
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cate, parent, false);

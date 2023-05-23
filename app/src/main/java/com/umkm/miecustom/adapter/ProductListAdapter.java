@@ -22,11 +22,6 @@ public class ProductListAdapter  extends RecyclerView.Adapter<ProductListAdapter
     private Context context;
     private List<ProductData> dataList;
     private ItemClickListener clickListener;
-    private MyViewHolder holder;
-    private int position;
-    private ImageView coverImage;
-    private TextView title;
-    private TextView price;
 
     public ProductListAdapter(Context context, List<ProductData> dataList, ItemClickListener clickListener) {
         this.context = context;
@@ -52,7 +47,7 @@ public class ProductListAdapter  extends RecyclerView.Adapter<ProductListAdapter
         holder.iid = dataList.get(position).getId_product();
         String titlee = dataList.get(position).getTitle();
         String hargaa = dataList.get(position).getPrice();
-        String gambar = "http://miesuhh.000webhostapp.com/admin/Res_img/dishes/"+dataList.get(position).getImageProduk();
+        String gambar = "http://miesuhh.000webhostapp.com/admin/Res_img/dishes/"+result.getImageProduk();
         holder.price.setText("Rp "+hargaa);
         holder.title.setText(titlee);
         Glide.with(context)

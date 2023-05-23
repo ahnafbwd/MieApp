@@ -25,13 +25,8 @@ public class CustomToppingListAdapter extends RecyclerView.Adapter<CustomTopping
     private List<CustomToppingData> dataList;
     private List<String>toplist;
     private ItemClickListener clickListener;
-    private MyViewHolder holder;
     public List<String>list1 = new ArrayList<>();
     public List<String>list2 = new ArrayList<>();
-    private int position;
-    ArrayList<CustomToppingData> selectedCheckbox = new ArrayList<CustomToppingData>();
-
-    private boolean rbc = false;
     private int lastcp = -1;
 
     public CustomToppingListAdapter(Context context, List<CustomToppingData> dataList, ItemClickListener clickListener) {
@@ -56,11 +51,9 @@ public class CustomToppingListAdapter extends RecyclerView.Adapter<CustomTopping
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         CustomToppingData result = dataList.get(position);
-        Integer id = dataList.get(position).getId_topping();
-        String titlee = dataList.get(position).getTitle();
-        String hargaa = dataList.get(position).getPrice();
+        String titlee = result.getTitle();
+        String hargaa = result.getPrice();
         int hrggg = Integer.parseInt(hargaa.replaceAll("[\\D]",""));
-        String topdata = titlee+hargaa;
         holder.price.setText("Rp "+hrggg);
         holder.title.setText(titlee);
         holder.ctv.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +63,6 @@ public class CustomToppingListAdapter extends RecyclerView.Adapter<CustomTopping
                     if (holder.ctv.isChecked()){
                         dataList.add(result);
                         clickListener.onClick(result,samanamalis(list1,result),samahargalis(list2,result));
-
                     }else{
                         deletenamalis(list1,result);
                         deletehargalis(list2,result);
@@ -97,14 +89,8 @@ public class CustomToppingListAdapter extends RecyclerView.Adapter<CustomTopping
 
         private TextView title;
         private TextView price;
-        ImageView kurang,tambah;
-        TextView jumlah;
-        private int count=0;
 
-        List<String>list1 = new ArrayList<>();
-        List<String>list2 = new ArrayList<>();
-
-         CheckBox ctv;
+        CheckBox ctv;
         private RelativeLayout rl;
 
         MyViewHolder(View itemView) {
@@ -127,16 +113,10 @@ public class CustomToppingListAdapter extends RecyclerView.Adapter<CustomTopping
     }
     public List<String> samanamalis(List<String>list1, CustomToppingData result){
         list1.add(result.getTitle());
-       // Set<String> uniqe =new HashSet<String>(list1);
-       // list1.clear();
-       // list1.addAll(uniqe);
         return list1;
     }
     public List<String> samahargalis(List<String> list2, CustomToppingData result){
         list2.add(result.getPrice());
-      //  Set<String> uniqe =new HashSet<String>(list2);
-       // list2.clear();
-      //  list2.addAll(uniqe);
         return list2;
     }
     public List<String> deletenamalis(List<String>list1, CustomToppingData result){

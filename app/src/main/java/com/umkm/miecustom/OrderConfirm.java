@@ -105,45 +105,10 @@ public class OrderConfirm extends AppCompatActivity {
         btnpesanskrg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String url ="https://miesuhh.000webhostapp.com/mobileapps/transaction/addtransaksi.php";
-
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject jsonObject = new JSONObject(response);
-                                    String status = jsonObject.getString("status");
-                                    String message = jsonObject.getString("message");
-                                    if (status.equals("success")){
-                                        Toast.makeText(getApplicationContext(),"Berhasil",Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(getApplicationContext(), Homepage.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else {
-                                        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
-                                        //textViewError.setText(response);
-                                        //textViewError.setVisibility(View.VISIBLE);
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                       // textViewError.setText(error.getLocalizedMessage());
-                       // textViewError.setVisibility(View.VISIBLE);
-                    }
-                }){
-                    protected Map<String, String> getParams(){
-                        Map<String, String> paramV = new HashMap<>();
-                        paramV.put("id_user", id_user);
-                        return paramV;
-                    }
-                };
-                queue.add(stringRequest);
+                String cus = "addtransaksicustom.php";
+                String bi ="addtransaksi.php";
+                kirim(cus);
+                kirim(bi);
             }
         });
 
@@ -181,6 +146,49 @@ public class OrderConfirm extends AppCompatActivity {
             }
         });
         viewModel.getallorder(id_user,this);
+    }
+    public void kirim(String file){
+        SharedPreferences sharedPreferences = getSharedPreferences("miecustom", Context.MODE_PRIVATE);
+        id_user = sharedPreferences.getString("id_user","").toString();
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        String url ="https://miesuhh.000webhostapp.com/mobileapps/transaction/"+file;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
+                            String message = jsonObject.getString("message");
+                            if (status.equals("success")){
+                                Toast.makeText(getApplicationContext(),"Berhasil",Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(), Homepage.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                                //textViewError.setText(response);
+                                //textViewError.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // textViewError.setText(error.getLocalizedMessage());
+                // textViewError.setVisibility(View.VISIBLE);
+            }
+        }){
+            protected Map<String, String> getParams(){
+                Map<String, String> paramV = new HashMap<>();
+                paramV.put("id_user", id_user);
+                return paramV;
+            }
+        };
+        queue.add(stringRequest);
     }
 
 }

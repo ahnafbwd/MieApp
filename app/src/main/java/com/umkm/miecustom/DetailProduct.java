@@ -137,7 +137,7 @@ public class DetailProduct extends AppCompatActivity {
                     public void onClick(View v) {
                         addtocart();
                     }
-                });
+                }) ;
             }
         });
 

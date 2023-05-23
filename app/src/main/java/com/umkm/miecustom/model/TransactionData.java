@@ -15,8 +15,8 @@ public class TransactionData {
     private String price;
     @SerializedName("status")
     private String status;
-    //@SerializedName("remark")
-   // private String remark;
+    @SerializedName("remark")
+    private String remark;
     @SerializedName("date")
     private String date;
 
@@ -27,7 +27,7 @@ public class TransactionData {
         this.quantity = quantity;
         this.price = price;
         this.status = status;
-        //this.remark = remark;
+        this.remark = remark;
         this.date = date;
     }
 
@@ -79,13 +79,9 @@ public class TransactionData {
         this.status = status;
     }
 
-   // public String getRemark() {
-   //     return remark;
-   // }
+    public String getRemark() {return remark;}
 
-   // public void setRemark(String remark) {
-   //     this.remark = remark;
-  //  }
+    public void setRemark(String remark) {this.remark = remark;}
 
     public String getDate() {
         return date;

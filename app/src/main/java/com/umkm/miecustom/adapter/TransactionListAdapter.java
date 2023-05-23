@@ -86,10 +86,5 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         }
     }
 
-
-    /*public interface ItemClickListener{
-        void onClick(TransactionData result);
-    }*/
-
 }
 

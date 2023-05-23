@@ -34,10 +34,6 @@ public class CartData {
         this.quantity = quantity;
     }
 
-    public CartData() {
-
-    }
-
     public Integer getId_cart() {
         return id_cart;
     }

@@ -34,23 +34,10 @@ import java.util.Map;
 public class CartCustomListAdapter extends RecyclerView.Adapter<CartCustomListAdapter.MyViewHolder> {
     private Context context;
     private List<CartData> dataList;
-   // private ItemClickListener clickListener;
-    private MyViewHolder holder;
-    private int position;
-    private ImageView coverImage;
-    private TextView title;
-    private TextView price;
-    CartViewModel cartViewModel;
-    CartFragment cartFragment;
-    private List<CartData> CartList;
-    private CartViewModel viewModel;
-    private List<CartData> CartList2;
-    private CartViewModel viewModel2;
 
     public CartCustomListAdapter(Context context, List<CartData> dataList) {
         this.context = context;
         this.dataList = dataList;
-        //this.clickListener = clickListener;
     }
 
     public void setCartList(List<CartData> dataList) {
@@ -68,14 +55,14 @@ public class CartCustomListAdapter extends RecyclerView.Adapter<CartCustomListAd
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         CartData result = dataList.get(position);
-        Integer id_cart = dataList.get(position).getId_cart();
+        Integer id_cart = result.getId_cart();
         String idcrt = id_cart.toString();
-        String qty = dataList.get(position).getQuantity();
-        String note = dataList.get(position).getNote();
-        String titlee = dataList.get(position).getTitle();
-        String dess = dataList.get(position).getDescription();
-        String hargaa = dataList.get(position).getPrice();
-        String gambar = "http://miesuhh.000webhostapp.com/admin/Res_img/dishes/"+dataList.get(position).getImageProduk();
+        String qty = result.getQuantity();
+        String note = result.getNote();
+        String titlee = result.getTitle();
+        String dess = result.getDescription();
+        String hargaa = result.getPrice();
+        String gambar = "http://miesuhh.000webhostapp.com/admin/Res_img/dishes/"+result.getImageProduk();
         holder.count = Integer.parseInt(qty);
         holder.price.setText("Rp "+hargaa);
         holder.title.setText(titlee);
@@ -104,7 +91,6 @@ public class CartCustomListAdapter extends RecyclerView.Adapter<CartCustomListAd
                 if (holder.count<0){
                     holder.count = 0;
                     holder.jumlah.setText(holder.count);
-                    String qtyy= String.valueOf(holder.count);
                     deletecart(idcrt);
                 }else if (holder.count==0){
                     deletecart(idcrt);
@@ -164,12 +150,6 @@ public class CartCustomListAdapter extends RecyclerView.Adapter<CartCustomListAd
 
         }
     }
-
-
-
-    /*public interface ItemClickListener{
-        void onClick(CartData result);
-    }*/
 
     public void deletecart(String idcrt){
         RequestQueue queue = Volley.newRequestQueue(context.getApplicationContext());

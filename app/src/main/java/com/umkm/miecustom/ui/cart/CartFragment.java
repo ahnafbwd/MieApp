@@ -76,9 +76,6 @@ public class CartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getTotalcart();
-                // Fragment fragmentt = new OrderConfirmationFragment();
-               // FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-               // transaction.replace(R.id.container, fragmentt).commit();
             }
         });
         return view;
@@ -147,6 +144,7 @@ public class CartFragment extends Fragment {
         });
         viewModel2.getcustom(id_user,getContext());
     }
+
     public void getTotalcart(){
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("miecustom", Context.MODE_PRIVATE);
         id_user = sharedPreferences.getString("id_user","").toString();

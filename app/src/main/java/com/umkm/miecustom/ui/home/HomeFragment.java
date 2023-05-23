@@ -60,7 +60,6 @@ public class HomeFragment extends Fragment {
 
 
         RecyclerView catee = view.findViewById(R.id.btncategory);
-        catee.setHasFixedSize(true);
         LinearLayoutManager layoutManagercate = new LinearLayoutManager(getContext());
         layoutManagercate.setOrientation(RecyclerView.HORIZONTAL);
         catee.setLayoutManager(layoutManagercate);

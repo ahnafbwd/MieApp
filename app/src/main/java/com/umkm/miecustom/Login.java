@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
     TextInputEditText textInputEditTextEmail, textInputEditTextPassword;
     Button buttonSubmit;
     String username, email, iduser, addres, password, apiKey;
-    TextView textViewError,textViewLoginNow;
+    TextView textViewError;
     ProgressBar progressBar;
     SharedPreferences sharedPreferences;
     boolean passwordvisible;

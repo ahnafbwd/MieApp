@@ -26,12 +26,6 @@ public class CustomMieListAdapter extends RecyclerView.Adapter<CustomMieListAdap
     private Context context;
     private List<CustomMieData> dataList;
     private ItemClickListener clickListener;
-    private MyViewHolder holder;
-    private int position;
-    private ImageView coverImage;
-    private TextView title;
-    private TextView price;
-    private boolean rbc = false;
     private int lastcp = -1;
 
     public CustomMieListAdapter(Context context, List<CustomMieData> dataList, ItemClickListener clickListener) {
@@ -55,10 +49,10 @@ public class CustomMieListAdapter extends RecyclerView.Adapter<CustomMieListAdap
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         CustomMieData result = dataList.get(position);
-        String titlee = dataList.get(position).getTitle();
-        String descp = dataList.get(position).getShortdesc();
-        String hargaa = dataList.get(position).getPrice();
-        String gambar = "http://miesuhh.000webhostapp.com/admin/Res_img/dishes/"+dataList.get(position).getImageProduk();
+        String titlee = result.getTitle();
+        String descp = result.getShortdesc();
+        String hargaa = result.getPrice();
+        String gambar = "http://miesuhh.000webhostapp.com/admin/Res_img/dishes/"+result.getImageProduk();
         int harggga = Integer.parseInt(hargaa.replaceAll("[\\D]",""));
         holder.price.setText("Rp "+harggga);
         holder.title.setText(titlee);

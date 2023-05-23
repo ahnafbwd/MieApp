@@ -31,28 +31,19 @@ import retrofit2.Callback;
 public class CartViewModel extends ViewModel {
     private MutableLiveData<List<CartData>> dataList;
     private MutableLiveData<List<CartData>> dataList2;
-    private MutableLiveData<List<CartData>> dataList3;
 
     public CartViewModel(){
         dataList = new MutableLiveData<>();
         dataList2 = new MutableLiveData<>();
-        dataList3 = new MutableLiveData<>();
-
     }
 
     public MutableLiveData<List<CartData>> getDataListObserver() {
         return dataList;
-
     }
+
     public MutableLiveData<List<CartData>> getDataList2Observer() {
         return dataList2;
-
     }
-    public MutableLiveData<List<CartData>> getDataList3Observer() {
-        return dataList3;
-
-    }
-
 
     public void getnotcustom(String id_user,Context contextt) {
         RequestQueue queue = Volley.newRequestQueue(contextt);
@@ -148,19 +139,5 @@ public class CartViewModel extends ViewModel {
         };
         queue.add(stringRequest);
     }
-    public void getallcart() {
-        GetService service = ApiClient.getRetrofitInstance().create(GetService.class);
-        Call<List<CartData>> call = service.getcart();
-        call.enqueue(new Callback<List<CartData>>() {
-            @Override
-            public void onResponse(Call<List<CartData>> call, retrofit2.Response<List<CartData>> response) {
-                dataList3.postValue(response.body());
-            }
 
-            @Override
-            public void onFailure(Call<List<CartData>> call, Throwable t) {
-                dataList3.postValue(null);
-            }
-        });
-    }
 }
